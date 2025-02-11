@@ -1,0 +1,16 @@
+Created 2 files: Dockerfile and index.html
+
+sudo docker build -t myapp2 . - збірка імеджу контейнера
+sudo docker run -d -p 8080:80 myapp2 - запуск контейнера з форвардом 8080 порта хоста у 80 контейнера. 
+sudo docker ps - вивести список запущенних контейнерів. 
+
+curl http://192.168.122.250:8080
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Hey you</title>
+    </head>
+    <body>
+        <p>Hello from my Docker container! Alex Bykovskyi!</p>
+    </body>
+</html>
