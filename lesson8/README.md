@@ -1,0 +1,15 @@
+# Опис директив в уроці 8
+```
+apiVersion: v1
+kind: Service
+metadata:
+  name: alex-service
+spec:
+  selector:
+    app: alex-app
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+  type: ClusterIP
+```
