@@ -1,0 +1,19 @@
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: busybox-hpa  # HPA для автоматичного масштабування
+  namespace: busybox-namespace
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: busybox-deployment
+  minReplicas: 2  # Мінімальна кількість реплік
+  maxReplicas: 10  # Максимальна кількість реплік
+  metrics:
+  - type: Resource
+    resource:
+      name: cpu
+      target:
+        type: Utilization
+        averageUtilization: 50  # Масштабування на основі CPU

@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: busybox-config  # ConfigMap для зберігання імені файлу логів
+  namespace: busybox-namespace
+data:
+  LOG_FILE: "/mnt/logs/busybox.log"

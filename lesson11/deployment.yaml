@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: busybox-deployment  # Деплоймент для керування подами
+  namespace: busybox-namespace
+spec:
+  replicas: 3  # Початкова кількість реплік
+  selector:
+    matchLabels:
+      app: busybox
+  template:
+    metadata:
+      labels:
+        app: busybox
+    spec:
+      containers:
+      - name: busybox
+        image: busybox
+        command: ["sh", "-c", "while true; do echo $(hostname) $(date) | tee -a $LOG_FILE; sleep 5; done"]  # Команда для запису у лог
+        env:
+        - name: LOG_FILE
+          valueFrom:
+            configMapKeyRef:
+              name: busybox-config
+              key: LOG_FILE
+        volumeMounts:
+        - name: log-volume
+          mountPath: /mnt/logs
+      volumes:
+      - name: log-volume
+        persistentVolumeClaim:
+          claimName: busybox-pvc
