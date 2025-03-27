@@ -17,7 +17,7 @@
 `microk8s.helm repo add fluent https://fluent.github.io/helm-charts`
 
 ```
-microk8s.helm install fluentd fluent/fluentd \
+microk8s.helm install fluentd fluent/fluentd -n monitoring\
   --set output.loki.enabled=true \
   --set output.loki.url="http://loki:3100/loki/api/v1/push"
 ```
